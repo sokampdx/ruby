@@ -4,43 +4,47 @@ class AboutHashes < Neo::Koan
   def test_creating_hashes
     empty_hash = Hash.new
     assert_equal Hash, empty_hash.class
-    assert_equal(__, empty_hash)
-    assert_equal __, empty_hash.size
+    assert_equal({}, empty_hash)
+    assert_equal 0, empty_hash.size
   end
 
   def test_hash_literals
     hash = { :one => "uno", :two => "dos" }
-    assert_equal __, hash.size
+    assert_equal 2, hash.size
   end
 
   def test_accessing_hashes
     hash = { :one => "uno", :two => "dos" }
-    assert_equal __, hash[:one]
-    assert_equal __, hash[:two]
-    assert_equal __, hash[:doesnt_exist]
+    assert_equal "uno", hash[:one]
+    assert_equal "dos", hash[:two]
+    assert_equal nil, hash[:doesnt_exist]
   end
 
   def test_accessing_hashes_with_fetch
     hash = { :one => "uno" }
-    assert_equal __, hash.fetch(:one)
-    assert_raise(___) do
+    assert_equal "uno", hash.fetch(:one)
+    assert_raise(KeyError) do
       hash.fetch(:doesnt_exist)
     end
 
     # THINK ABOUT IT:
     #
     # Why might you want to use #fetch instead of #[] when accessing hash keys?
+    # because you can use fetch with options (e.g. default_value)
+
   end
 
   def test_changing_hashes
     hash = { :one => "uno", :two => "dos" }
     hash[:one] = "eins"
 
-    expected = { :one => __, :two => "dos" }
-    assert_equal __, hash
+    expected = { :one => "eins", :two => "dos" }
+    assert_equal expected, hash
 
     # Bonus Question: Why was "expected" broken out into a variable
     # rather than used as a literal?
+    # cannot use assert_equal { :one => "eins", :two => "dos" }, hash
+    # but can use assert_equal({ :one => "eins", :two => "dos" }, hash)
   end
 
   def test_hash_is_unordered
