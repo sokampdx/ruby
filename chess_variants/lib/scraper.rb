@@ -2,7 +2,6 @@ require 'nokogiri'
 require 'open-uri'
 
 module Scraper
-
 	def Scraper.find_moves_in(url, tag, matcher)
 		content = Nokogiri::HTML(open(url)) 
 		element = content.xpath(tag)
@@ -36,9 +35,14 @@ class ChessSite
 			@move_list.each { |k, m| puts "Game: #{k} => #{m.join(',')}" }
 		end
 	end
+
+	#TODO: add game and moves to json file as temp library
+	#TODO: add game and moves to mysql database for better query 
 end
 
 def main
+	#TODO: setup a json file that has url, tag, matcher for each chess site and possible range
+
 	tag = "//script"
 	start_match = "\\:\\["
 	end_match = "\\]\\,"
