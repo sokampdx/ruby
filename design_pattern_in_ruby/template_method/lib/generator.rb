@@ -9,15 +9,11 @@ EOF
     end
 
     def header
-      "<h1>Hello World!</h1>"
+      raise NotImplementedError
     end
 
     def content
-      <<EOF
-<div class="content">
-  <p>lorem ipsum</p>
-</div>
-EOF
+      raise NotImplementedError
     end
   end
 end

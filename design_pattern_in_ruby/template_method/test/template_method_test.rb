@@ -1,5 +1,7 @@
 require 'test_helper'
 require 'generator'
+require 'generators/html'
+require 'generators/markdown'
 
 module  Newsletter
   describe Generator do
@@ -9,7 +11,7 @@ module  Newsletter
         File.dirname(__FILE__)
       )
 
-      Generator.new(:html).render.must_include final_result
+      Generators::HTML.new.render.must_include final_result
     end
 
     it "generates a newsletter in Markdown" do
@@ -18,7 +20,12 @@ module  Newsletter
         File.dirname(__FILE__)
       )
 
-      Generator.new(:markdown).render.must_include final_result
+      Generators::Markdown.new.render.must_include final_result
+    end
+
+    it "fails to render if calling the base generator class" do
+      -> { Generator.new.header }.must_raise NotImplementedError
+      -> { Generator.new.content }.must_raise NotImplementedError
     end
   end
 end
