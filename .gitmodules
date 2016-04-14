@@ -1,3 +1,6 @@
 [submodule "coursera-rails/fullstack-course1-module2"]
 	path = coursera-rails/fullstack-course1-module2
 	url = git@github.com:sokampdx/fullstack-course1-module2.git
+[submodule "coursera-rails/fullstack-course1-module3"]
+	path = coursera-rails/fullstack-course1-module3
+	url = git@github.com:sokampdx/fullstack-course1-module3.git
