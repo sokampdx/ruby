@@ -7,8 +7,8 @@ class CoinChanger
 
   def change(value)
     return 0 if @coins.size == 0
-    return 1 if @coins.min >= value
-    calculate_change(value)
+    result = calculate_change(value)
+    result == 0 ? 1 : result
   end
 
   def calculate_change(value)
@@ -71,4 +71,6 @@ describe CoinChanger do
   assert_change([1,2], 4, 3)
   assert_change([1,2,3], 5, 5)
   assert_change([1,5,10,25], 100, 242)
+  assert_change([3,5], 11, 1) 
+  assert_change([3,7], 5, 1)
 end
